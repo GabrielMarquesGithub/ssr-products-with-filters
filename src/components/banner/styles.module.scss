@@ -1,0 +1,11 @@
+.container {
+  user-select: none;
+  border-bottom: 2px solid var(--blue);
+}
+.internalContainer {
+  padding: 2rem;
+  position: relative;
+
+  display: flex;
+  justify-content: space-between;
+}

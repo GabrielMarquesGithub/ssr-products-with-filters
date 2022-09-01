@@ -1,0 +1,32 @@
+:root {
+  --blue: #3082a5;
+  --orange: #ffa928;
+  --white: #ffffff;
+  --black: #000000;
+}
+
+//Remoção de espaçamento
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+//Facilitando trabalho com a unidade Rem
+html {
+  font-size: 62.5%;
+}
+
+body {
+  font-size: 1.6rem;
+  font-family: "Roboto", Helvetica, sans-serif;
+  //Melhora na exibição das fontes
+  -webkit-font-smoothing: antialiased;
+}
+
+button {
+  cursor: pointer;
+}
+a {
+  color: inherit;
+  text-decoration: none;
+}

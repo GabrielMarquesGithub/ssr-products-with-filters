@@ -1,5 +1,6 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import { ProductType } from "../../types/product";
+import { fetchData } from "../../utils/fetchData";
 
 export default async function productHandler(
   req: NextApiRequest,
@@ -12,30 +13,29 @@ export default async function productHandler(
       const { filter } = query;
 
       //url base
-      const baseUrl = "https://fakestoreapi.com/products";
+      const baseUrl = process.env.NEXT_PUBLIC_API_BASE_URL + "/products";
 
       //var para produtor
       let products: ProductType[] = [];
 
       if (filter) {
+        //se o filtro for apenas uma string
         if (typeof filter === "string") {
-          await fetch(`${baseUrl}/category/${filter}`)
-            .then((res) => res.json())
-            .then((json) => (products = json));
+          products = await fetchData(`${baseUrl}/category/${filter}`);
+          //se o filtro for um array de strings
         } else {
           const productsArray: ProductType[][] = await Promise.all(
             filter.map((category) =>
-              fetch(`${baseUrl}/category/${category}`).then((res) => res.json())
+              fetchData(`${baseUrl}/category/${category}`)
             )
           );
+          //transformando em um único array
           productsArray.forEach((value) => {
             products = [...value, ...products];
           });
         }
       } else {
-        await fetch(baseUrl)
-          .then((res) => res.json())
-          .then((json) => (products = json));
+        products = await fetchData(baseUrl);
       }
 
       res.status(200).json(products);

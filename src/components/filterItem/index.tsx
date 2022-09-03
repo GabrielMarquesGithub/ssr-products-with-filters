@@ -15,10 +15,23 @@ const FilterItem = ({ category }: FilterItemType) => {
 
   const handleChangeUrl = (text: string) => {
     let newPath;
+    const baseOptions = {
+      param: "filter",
+      baseUrl: process.env.NEXT_PUBLIC_BASE_URL!,
+    };
+
     if (existParam(text)) {
-      newPath = changeUrlParams(asPath, "filter", text, "delete");
+      newPath = changeUrlParams(asPath, {
+        ...baseOptions,
+        value: text,
+        method: "delete",
+      });
     } else {
-      newPath = changeUrlParams(asPath, "filter", text, "append");
+      newPath = changeUrlParams(asPath, {
+        ...baseOptions,
+        value: text,
+        method: "append",
+      });
     }
 
     push(newPath);

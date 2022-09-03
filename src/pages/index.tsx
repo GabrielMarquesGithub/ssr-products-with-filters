@@ -30,7 +30,7 @@ export const getServerSideProps: GetServerSideProps = async ({ req }) => {
     "https://fakestoreapi.com/products/categories"
   );
   const products = await fetchData(
-    "http://localhost:3000/api/produtos" + req.url
+    process.env.NEXT_PUBLIC_BASE_URL + "/api/produtos" + req.url
   );
 
   return {

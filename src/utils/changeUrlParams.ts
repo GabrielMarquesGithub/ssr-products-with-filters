@@ -1,17 +1,23 @@
 //cria e redireciona para uma nova Url
 type changeUrlParamsType = (
   url: string,
-  param: string,
-  value: string,
-  method?: "set" | "delete" | "append" | "get"
+  options:
+    | {
+        param: string;
+        value?: string;
+        method: "get";
+        baseUrl: string;
+      }
+    | {
+        param: string;
+        value: string;
+        method: "set" | "append" | "delete";
+        baseUrl: string;
+      }
 ) => string;
-export const changeUrlParams: changeUrlParamsType = (
-  url,
-  param,
-  value,
-  method = "set"
-) => {
-  const currentPath = new URL(url, "http://localhost:3000/");
+export const changeUrlParams: changeUrlParamsType = (url, options) => {
+  const { method, value, param, baseUrl } = options;
+  const currentPath = new URL(url, baseUrl);
 
   if (method === "get") {
     const valueOfParam = currentPath.searchParams.get(param);

@@ -17,7 +17,7 @@ const FilterItem = ({ category }: FilterItemType) => {
     let newPath;
     const baseOptions = {
       param: "filter",
-      baseUrl: process.env.NEXT_PUBLIC_BASE_URL!,
+      baseUrl: "https://products-with-filters.vercel.app/",
     };
 
     if (existParam(text)) {

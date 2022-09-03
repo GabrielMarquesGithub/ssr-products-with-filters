@@ -13,7 +13,7 @@ export default async function productHandler(
       const { filter } = query;
 
       //url base
-      const baseUrl = process.env.NEXT_PUBLIC_API_BASE_URL + "/products";
+      const baseUrl = "https://fakestoreapi.com/products";
 
       //var para produtor
       let products: ProductType[] = [];

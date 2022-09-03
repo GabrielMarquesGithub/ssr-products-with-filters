@@ -6,6 +6,7 @@ import { ProductType } from "../types/product";
 import { fetchData } from "../utils/fetchData";
 
 import Home from "../templates/home";
+import { server } from "../config";
 
 type HomePropsPage = {
   products: ProductType[];
@@ -29,9 +30,7 @@ export const getServerSideProps: GetServerSideProps = async ({ req }) => {
   const categories = await fetchData(
     "https://fakestoreapi.com/products/categories"
   );
-  const products = await fetchData(
-    process.env.NEXT_PUBLIC_BASE_URL + "/api/produtos" + req.url
-  );
+  const products = await fetchData(server + "/api/produtos" + req.url);
 
   return {
     props: {

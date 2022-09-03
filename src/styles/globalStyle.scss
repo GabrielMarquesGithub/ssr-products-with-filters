@@ -1,8 +1,10 @@
 :root {
   --blue: #3082a5;
+  --light-blue: #61c3ed;
   --orange: #ffa928;
   --white: #ffffff;
   --black: #000000;
+  --grey: #e5e7e9;
 }
 
 //Remoção de espaçamento
@@ -17,6 +19,7 @@ html {
 }
 
 body {
+  background: var(--grey);
   font-size: 1.6rem;
   font-family: "Roboto", Helvetica, sans-serif;
   //Melhora na exibição das fontes

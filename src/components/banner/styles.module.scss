@@ -1,6 +1,8 @@
 .container {
   user-select: none;
   border-bottom: 2px solid var(--blue);
+
+  background: var(--light-blue);
 }
 .internalContainer {
   padding: 2rem;

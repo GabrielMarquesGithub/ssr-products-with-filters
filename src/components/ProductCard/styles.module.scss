@@ -1,4 +1,5 @@
 .imageContainer {
+  user-select: none;
   margin-bottom: 2rem;
   position: relative;
   width: 100%;
@@ -7,7 +8,7 @@
   height: 200px;
 
   min-width: 50px;
-  max-width: 250px;
+  max-width: 220px;
 }
 .headerContainer {
   width: 100%;
@@ -19,6 +20,7 @@
   justify-self: flex-end;
 }
 .container {
+  max-width: calc(220px + 4rem);
   width: 100%;
 
   color: var(--black);

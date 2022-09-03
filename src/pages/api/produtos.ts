@@ -23,12 +23,14 @@ export default async function productHandler(
             .then((res) => res.json())
             .then((json) => (products = json));
         } else {
-          filter.forEach(async (category) => {
-            await fetch(`${baseUrl}/category/${category}`)
-              .then((res) => res.json())
-              .then((json) => (products = json));
+          const productsArray: ProductType[][] = await Promise.all(
+            filter.map((category) =>
+              fetch(`${baseUrl}/category/${category}`).then((res) => res.json())
+            )
+          );
+          productsArray.forEach((value) => {
+            products = [...value, ...products];
           });
-          console.log(products);
         }
       } else {
         await fetch(baseUrl)

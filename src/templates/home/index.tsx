@@ -1,28 +1,29 @@
 import Banner from "../../components/banner";
 import ProductsCardContainer from "../../components/ProductsCardContainer";
 import WidthContainer from "../../components/widthContainer";
-
-import styles from "./styles.module.scss";
-
-//mock data
-import data from "../../mock/productsPage/category.json";
 import FiltersBar from "../../components/filtersBar";
 
+import styles from "./styles.module.scss";
+import { ProductType } from "../../types/product";
+
 type HomeProps = {
-  category?: string;
+  products: ProductType[];
+  categories: string[];
 };
 
-const Home = ({}: HomeProps) => {
-  const { products } = data[0];
-
+const Home = ({ products, categories }: HomeProps) => {
   return (
     <>
       <Banner />
       <section>
         <WidthContainer>
           <div className={styles.container}>
-            <FiltersBar />
-            <ProductsCardContainer products={products} columns={3} />
+            <h2>Produtos</h2>
+            <hr />
+            <div className={styles.productsContainer}>
+              <FiltersBar categories={categories} />
+              <ProductsCardContainer products={products} columns={3} />
+            </div>
           </div>
         </WidthContainer>
       </section>

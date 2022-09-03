@@ -1,0 +1,12 @@
+.container {
+  h3 {
+    margin-bottom: 3rem;
+  }
+  ul {
+    list-style: none;
+
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+}

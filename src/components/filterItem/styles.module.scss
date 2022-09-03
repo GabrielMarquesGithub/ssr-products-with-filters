@@ -1,0 +1,40 @@
+.container {
+  label {
+    cursor: pointer;
+    width: 100%;
+    user-select: none;
+
+    span {
+      text-transform: capitalize;
+
+      display: flex;
+      gap: 1rem;
+
+      align-items: center;
+
+      color: #000;
+
+      &:before {
+        content: "";
+        background: var(--white);
+        border: 1px solid var(--orange);
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        width: 1.5rem;
+        height: 1.5rem;
+
+        transition: background-color 100ms;
+      }
+    }
+    input {
+      appearance: none;
+    }
+    input:checked + span:before {
+      background: var(--orange);
+      border-color: var(--orange);
+    }
+  }
+}

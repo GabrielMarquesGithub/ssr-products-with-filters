@@ -1,5 +1,9 @@
 import Image from "next/image";
+import { memo } from "react";
+
 import { ProductType } from "../../types/product";
+
+import { objectIsEqual } from "../../utils/objectIsEqual";
 
 import styles from "./styles.module.scss";
 
@@ -8,7 +12,7 @@ type ProductsCardType = {
 };
 
 const ProductsCard = ({ product }: ProductsCardType) => {
-  const { imageUrl, name, price, discount } = product;
+  const { image, title, price } = product;
 
   return (
     <div className={styles.container}>
@@ -16,16 +20,16 @@ const ProductsCard = ({ product }: ProductsCardType) => {
         <div className={styles.imageContainer}>
           <Image
             layout="fill"
-            src={imageUrl}
-            alt={`Imagem - ${name}`}
+            src={image}
+            alt={`Imagem - ${title}`}
             objectFit="contain"
           />
         </div>
-        {name}
+        {title}
       </div>
       <div className={styles.footerContainer}>R${price}</div>
     </div>
   );
 };
 
-export default ProductsCard;
+export default memo(ProductsCard, (prev, next) => objectIsEqual(prev, next));

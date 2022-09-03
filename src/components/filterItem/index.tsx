@@ -1,11 +1,34 @@
+import { useRouter } from "next/router";
+
+import { changeUrlParams } from "../../utils/changeUrlParams";
+
 import styles from "./styles.module.scss";
 
-const FilterItem = () => {
+type FilterItemType = {
+  category: string;
+};
+
+const FilterItem = ({ category }: FilterItemType) => {
+  const { asPath, push } = useRouter();
+
+  const existParam = (paramValue: string) => asPath.includes(paramValue);
+
+  const handleChangeUrl = (text: string) => {
+    let newPath;
+    if (existParam(text)) {
+      newPath = changeUrlParams(asPath, "filter", text, "delete");
+    } else {
+      newPath = changeUrlParams(asPath, "filter", text, "append");
+    }
+
+    push(newPath);
+  };
+
   return (
-    <li>
-      <label>
-        <input type="checkbox" />
-        Filtro
+    <li className={styles.container}>
+      <label onClick={() => handleChangeUrl(category)}>
+        <input type="checkbox" defaultChecked={existParam(category)} />
+        <span>{category}</span>
       </label>
     </li>
   );

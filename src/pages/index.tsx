@@ -30,7 +30,7 @@ export const getServerSideProps: GetServerSideProps = async ({ req }) => {
     "https://fakestoreapi.com/products/categories"
   );
   const products = await fetchData(
-    "https://products-with-filters.vercel.app" + (req.url ? req.url : "")
+    "http://localhost:3000/api/produtos" + req.url
   );
 
   return {
